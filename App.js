@@ -1,5 +1,5 @@
 import React,  {useState} from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 
 export default function App() {
   const [todos, setTodos] = useState([{
@@ -62,13 +62,20 @@ export default function App() {
     "title": "illo est ratione doloremque quia maiores aut",
     "completed": true
   }])
+
+   const pressHandler = (id) => {
+     const selectedItem = (todos.filter(todo => todo.id === id))[0]
+     alert(selectedItem.title)
+  }
   return (
     <View style={styles.container}>
       <FlatList 
       keyExtractor={(item) => item.id.toString()}
       data={todos}
       renderItem={({item}) => (
+        <TouchableOpacity onPress={() => pressHandler(item.id)}>
            <Text style={styles.todo}>{item.title}</Text>
+        </TouchableOpacity>
       )}
       />
       {/* <ScrollView>
