@@ -1,97 +1,29 @@
 import React,  {useState} from 'react';
-import { FlatList, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import { FlatList, StyleSheet, Text, View, SafeAreaView} from 'react-native';
+import Header from './components/Header';
 
 export default function App() {
-  const [todos, setTodos] = useState([{
-    "userId": 1,
-    "id": 1,
-    "title": "delectus aut autem",
-    "completed": false
-  },
-  {
-    "userId": 1,
-    "id": 2,
-    "title": "quis ut nam facilis et officia qui",
-    "completed": false
-  },
-  {
-    "userId": 1,
-    "id": 3,
-    "title": "fugiat veniam minus",
-    "completed": false
-  },
-  {
-    "userId": 1,
-    "id": 4,
-    "title": "et porro tempora",
-    "completed": true
-  },
-  {
-    "userId": 1,
-    "id": 5,
-    "title": "laboriosam mollitia et enim quasi adipisci quia provident illum",
-    "completed": false
-  },
-  {
-    "userId": 1,
-    "id": 6,
-    "title": "qui ullam ratione quibusdam voluptatem quia omnis",
-    "completed": false
-  },
-  {
-    "userId": 1,
-    "id": 7,
-    "title": "illo expedita consequatur quia in",
-    "completed": false
-  },
-  {
-    "userId": 1,
-    "id": 8,
-    "title": "quo adipisci enim quam ut ab",
-    "completed": true
-  },
-  {
-    "userId": 1,
-    "id": 9,
-    "title": "molestiae perspiciatis ipsa",
-    "completed": false
-  },
-  {
-    "userId": 1,
-    "id": 10,
-    "title": "illo est ratione doloremque quia maiores aut",
-    "completed": true
-  }])
-
-   const pressHandler = (id) => {
-    let returnValue = [...todos];
-    returnValue.forEach(todo=> {
-      if(todo.id === id) {
-        todo.completed= true
-      }
-    })
-    setTodos(returnValue)
-  }
+  const [tasks, setTasks] = useState([
+    {"task":"HTML I","done":true, "id": "1"},
+    {"task":"CSS","done":true, "id": "2"},
+    {"task":"Responsive design","done":true, "id": "3"},
+    ])
   return (
-    <View style={styles.container}>
-      <FlatList 
-      keyExtractor={(item) => item.id.toString()}
-      data={todos}
-      renderItem={({item}) => (
-        <TouchableOpacity onPress={() => pressHandler(item.id)}>
-           <Text style={{...styles.todo, backgroundColor: item.completed ? "green":"black"}}>{item.title}</Text>
-        </TouchableOpacity>
-      )}
-      />
-      {/* <ScrollView>
-     {todos.map(todo => {
-       return( <View key={todo.id} style={styles.todo}>
-           <Text>{todo.title}</Text>
-         </View>
-       )
-     })}
-     </ScrollView> */}
-    </View>
+    <SafeAreaView style={styles.container}>
+      <Header />
+       <View style={styles.content}>
+         <View style={styles.list}>
+          <FlatList 
+          data={tasks}
+          renderItem={({item}) => (
+            <Text>{item.task}</Text>
+          )}
+          keyExtractor={(item) => item.id}
+          />
+          </View>
+       </View>
+      
+    </SafeAreaView>
   );
 }
 
@@ -99,14 +31,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center',
   },
-  todo:{
-    margin: 30,
-    color:"white",
-    fontSize: 20,
-    padding: 20
-
+  content: {
+    padding: 30,
+  },
+  list: {
+    margin: 30
   }
 });
