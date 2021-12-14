@@ -1,6 +1,7 @@
 import React,  {useState} from 'react';
 import { FlatList, StyleSheet, Text, View, SafeAreaView} from 'react-native';
 import Header from './components/Header';
+import Task from './components/Task';
 
 export default function App() {
   const [tasks, setTasks] = useState([
@@ -16,7 +17,7 @@ export default function App() {
           <FlatList 
           data={tasks}
           renderItem={({item}) => (
-            <Text>{item.task}</Text>
+            <Task item={item}/>
           )}
           keyExtractor={(item) => item.id}
           />
