@@ -1,5 +1,5 @@
 import React from 'react'
-import { TouchableOpacity, StyleSheet, Text, View} from 'react-native';
+import { TouchableOpacity, StyleSheet, Text} from 'react-native';
 
 const Task = ({item}) => {
     return (
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         borderRadius:5,
         borderWidth:1,
         marginTop:15,
-        borderStyle:"dotted"
+        borderStyle:"dashed"
 
     }
 })
