@@ -1,5 +1,5 @@
 import React,  {useState} from 'react';
-import { FlatList, StyleSheet, Text, View, SafeAreaView} from 'react-native';
+import { FlatList, StyleSheet, Text, View, SafeAreaView, Alert} from 'react-native';
 import AddTask from './components/AddTask';
 import Header from './components/Header';
 import Task from './components/Task';
@@ -13,9 +13,20 @@ export default function App() {
     {"task":"Responsive design","done":true, "id": "3"},
     ])
 const addTask = (text) => {
-   setTasks(prevTasks => {
-     return [{task:text, id:uuidv4()}, ...prevTasks]
-   })
+  if (!text){
+   Alert.alert(
+     'No task?',
+     'Please add a task',
+     [
+      { text: "OK", onPress: () => console.log("OK Pressed") }
+    ]
+      )
+  } else {
+    setTasks(prevTasks => {
+      return [{task:text, id:uuidv4()}, ...prevTasks]
+    })
+  }
+   
 }
 
   return (
