@@ -1,5 +1,5 @@
 import React,  {useState} from 'react';
-import { FlatList, StyleSheet, Text, View, SafeAreaView, Alert} from 'react-native';
+import { FlatList, StyleSheet, View, SafeAreaView, Alert, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import AddTask from './components/AddTask';
 import Header from './components/Header';
 import Task from './components/Task';
@@ -29,7 +29,15 @@ const addTask = (text) => {
    
 }
 
+
+const deleteTask = (id) => {
+   setTasks(prevTasks => {
+     return prevTasks.filter(task => task.id !=id )
+   })
+}
+
   return (
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
     <SafeAreaView style={styles.container}>
       <Header />
        <View style={styles.content}>
@@ -38,7 +46,7 @@ const addTask = (text) => {
           <FlatList 
           data={tasks}
           renderItem={({item}) => (
-            <Task item={item}/>
+            <Task item={item} deleteTask={deleteTask}/>
           )}
           keyExtractor={(item) => item.id}
           />
@@ -46,6 +54,7 @@ const addTask = (text) => {
        </View>
       
     </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 }
 
