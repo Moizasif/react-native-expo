@@ -1,6 +1,8 @@
 import { StyleSheet } from "react-native";
 export const global = StyleSheet.create({
     container: {
-        padding: 30
+        padding: 30,
+        alignItems:"center",
+        justifyContent:"center"
     }
 })

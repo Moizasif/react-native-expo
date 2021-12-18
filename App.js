@@ -1,14 +1,15 @@
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { View} from 'react-native';
-import Home from './screens/Home';
+import MyStack from './routes/MyStack';
+
 
 
 export default function App() {
 
   return (
     
-       <View style={styles.container}>
-         <Home />
-       </View>
+       <NavigationContainer>
+         <MyStack />
+       </NavigationContainer>
   );
 }
