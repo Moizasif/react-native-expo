@@ -6,6 +6,7 @@ const initialState = {
         {"task":"HTML I","done":false, "id": "1"},
         {"task":"CSS","done":false, "id": "2"},
         {"task":"Responsive design","done":false, "id": "3"},
+        {"task":"React Native Learning","done":false, "id": "4"},
         ]
 }
 
