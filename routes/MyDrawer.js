@@ -8,7 +8,7 @@ const MyDrawer = () => {
     return (
         <Drawer.Navigator>
             <Drawer.Screen name="Home" component={MyTab} />
-            <Drawer.Screen name="About" component={AboutStack} />
+            <Drawer.Screen name="Done" component={AboutStack} />
         </Drawer.Navigator>
     )
 }
