@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import { View, Text, Button, FlatList, TouchableOpacity, TextInput, StyleSheet } from "react-native";
 import { global } from "../styles/global";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addTask } from '../store/taskAction'
 
 const Home = ({navigation}) => {
     // const [tasks, setTasks] = useState([
@@ -10,12 +11,14 @@ const Home = ({navigation}) => {
     //     {"task":"Responsive design","done":true, "id": "3"},
     //     ])
     
-
+    const dispatch = useDispatch()
     const tasks = useSelector(state => state.tasks)
     const [text, setText] = useState('');
     const changeHandler = (val) => {
            setText(val)
     }    
+
+    const submitTask = ( text) => dispatch(addTask(text));
 
 
 
@@ -26,7 +29,7 @@ const Home = ({navigation}) => {
            placeholder="Add new task"
            onChangeText={changeHandler}
            />
-           <Button title="add task" onPress={() => addTask(text)}/>
+           <Button title="add task" color="blue" onPress={() => submitTask(text)}/>
           <FlatList 
           data={tasks}
           renderItem={({item}) => (
